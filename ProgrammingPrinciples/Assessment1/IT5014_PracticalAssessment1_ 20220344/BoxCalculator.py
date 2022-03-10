@@ -10,6 +10,8 @@
 # +--------+-------+
 
 # Get number of items; assume that the user enters any integer greater than 5
+print("This is a box calculator.\nBig boxes hold 5 items; medium boxes hold 3 \
+items, and small boxes hold just one item each.")
 num_items = int(input("How many items do you have? "))
 
 # Calculate minimum number of full boxes needed to store all items
@@ -24,20 +26,20 @@ big_box_msg = None
 medium_box_msg = None
 small_box_msg = None
 
-# Calculate number of full big boxes needed, using floor division
-# Could also use `divmod()`: https://www.codingem.com/python-floor-division/
+# Calculate number of big boxes needed, using floor division
+# (Could also use `divmod()`: https://www.codingem.com/python-floor-division/ )
 big_box_count = int(num_items // 5)
 
 # Work out how many items remain to be boxed up
 num_items_remaining = num_items - (big_box_count * 5)
 
-# If there are any over, work out number of full medium boxes needed
+# If there are any over, work out number of medium boxes needed
 if num_items_remaining:
     medium_box_count = int(num_items_remaining // 3)
 
-    num_items_remaining = num_items_remaining - (big_box_count * 3)
+    num_items_remaining = num_items_remaining - (medium_box_count * 3)
 
-    # If there are any over, work out number of full small boxes needed
+    # If there are any over, work out number of small boxes needed
     if num_items_remaining:
         small_box_count = int(num_items_remaining // 1)
 
@@ -45,31 +47,26 @@ if big_box_count > 1:
     big_box_msg = (str(big_box_count) + " big boxes")
 elif big_box_count == 1:
     big_box_msg = "1 big box"
-else:
-    big_box_msg = None
 
 if medium_box_count > 1:
     medium_box_msg = (str(medium_box_count) + " medium boxes")
 elif medium_box_count == 1:
     medium_box_msg = "1 medium box"
-else:
-    medium_box_msg = None
 
 if small_box_count > 1:
     small_box_msg = (str(small_box_count) + " small boxes")
 elif small_box_count == 1:
     small_box_msg = "1 small box"
-else:
-    small_box_msg = None
+
 
 # Displays the numbers of big, medium and small boxes used.
 print("Those items filled:")
 if big_box_msg:
-    print(big_box_msg)
+    print(" - " + big_box_msg)
 if medium_box_msg:
-    print(medium_box_msg)
+    print(" - " + medium_box_msg)
 if small_box_msg:
-    print(small_box_msg)
+    print(" - " + small_box_msg)
 
 # Displays the total number of boxes used.
 box_count = int(big_box_count + medium_box_count + small_box_count)
