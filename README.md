@@ -1,2 +1,0 @@
-# study
- Whitecliffe code
