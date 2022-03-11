@@ -1,20 +1,24 @@
-# Task 1: Box calculator
+'''
+Task 1: Box calculator
 
-# This table shows each box and the number of items each can hold
-# +--------+-------+
-# |  Size  | Items |
-# +--------+-------+
-# | Big    |     5 |
-# | Medium |     3 |
-# | Small  |     1 |
-# +--------+-------+
+This table shows available box sizes and the number of items each can hold:
 
-# Get number of items; assume that the user enters any integer greater than 5
-print("This is a box calculator.\nBig boxes hold 5 items; medium boxes hold 3 \
-items, and small boxes hold just one item each.")
++--------+-------+
+| Size   | Items |
++--------+-------+
+| Big    |     5 |
+| Medium |     3 |
+| Small  |     1 |
++--------+-------+
+'''
+
+# Welcome message and explanation
+# Incorporates newline character; uses `\` to keep lines under 80 chars long
+print("\nThis is a box calculator.\nBig boxes hold 5 items; medium boxes hold 3\
+ items, and small boxes hold just one item each.\n")
+
+# Get number of items; assume user enters int > 5
 num_items = int(input("How many items do you have? "))
-
-# Calculate minimum number of full boxes needed to store all items
 
 # Initialise box counts to zero
 big_box_count = 0
@@ -22,57 +26,100 @@ medium_box_count = 0
 small_box_count = 0
 
 # Initialise messages to None
-big_box_msg = None
-medium_box_msg = None
-small_box_msg = None
+big_box_msg = ""
+medium_box_msg = ""
+small_box_msg = ""
 
-# Calculate number of big boxes needed, using floor division
-# (Could also use `divmod()`: https://www.codingem.com/python-floor-division/ )
-big_box_count = int(num_items // 5)
+# Calculate number of big boxes needed, using floor division (`\\``)
+# Could also use `divmod()`: https://www.codingem.com/python-floor-division/
+big_box_count = num_items // 5
 
-# Work out how many items remain to be boxed up
+# Work out how many unboxed items remain; result will be of `int` type
 num_items_remaining = num_items - (big_box_count * 5)
 
-# If there are any over, work out number of medium boxes needed
+# If unboxed items remain, work out number of medium boxes needed
 if num_items_remaining:
-    medium_box_count = int(num_items_remaining // 3)
+    medium_box_count = num_items_remaining // 3
 
     num_items_remaining = num_items_remaining - (medium_box_count * 3)
 
-    # If there are any over, work out number of small boxes needed
+    '''
+    If unboxed items still remain, work out number of small boxes needed
+    No need for floor division here:
+      (num_items_remaining // 1)
+    will always equal `num_items_remaining` itself.
+    '''
     if num_items_remaining:
-        small_box_count = int(num_items_remaining // 1)
+        small_box_count = num_items_remaining
+
+
+# For each size of box -- if any are used -- print a summary message
+# Use plural ("boxes") if more than one, otherwise singular ("box")
+
+print("\nThose items filled:")
 
 if big_box_count > 1:
-    big_box_msg = (str(big_box_count) + " big boxes")
+    print("📦 " + str(big_box_count) + " big boxes")
 elif big_box_count == 1:
-    big_box_msg = "1 big box"
+    print("📦 1 big box")
 
 if medium_box_count > 1:
-    medium_box_msg = (str(medium_box_count) + " medium boxes")
+    print("📦 " + str(medium_box_count) + " medium boxes")
 elif medium_box_count == 1:
-    medium_box_msg = "1 medium box"
+    print("📦 1 medium box")
 
 if small_box_count > 1:
-    small_box_msg = (str(small_box_count) + " small boxes")
+    print("📦 " + str(small_box_count) + " small boxes")
 elif small_box_count == 1:
-    small_box_msg = "1 small box"
+    print("📦 1 small box")
 
+# Calculate total number of boxes used
+box_count = big_box_count + medium_box_count + small_box_count
 
-# Displays the numbers of big, medium and small boxes used.
-print("Those items filled:")
-if big_box_msg:
-    print(" - " + big_box_msg)
-if medium_box_msg:
-    print(" - " + medium_box_msg)
-if small_box_msg:
-    print(" - " + small_box_msg)
-
-# Displays the total number of boxes used.
-box_count = int(big_box_count + medium_box_count + small_box_count)
+# If more than one, set string to "boxes", plural, otherwise "box", singular
 if box_count > 1:
-    word = " boxes"
+    box_plural_or_singular = " boxes"
 else:
-    word = " box"
+    box_plural_or_singular = " box"
 
-print("You used " + str(box_count) + word + " in total.")
+print("\nYou used " + str(box_count) + box_plural_or_singular + " in total.")
+
+# This program fulfils the following four test-case assertions:
+#
+# Test-case A
+# -----------
+# 22 items should fill:
+# - 4 big boxes (4 * 5 = 20)
+# - 2 small boxes (2 * 1 = 2)
+# 20 + 2 = 22
+# 4 + 2 = 6 boxes total
+# -----------
+#
+# Test-case B
+# -----------
+# 13 items should fill:
+# - 2 big boxes (2 * 5 = 10)
+# - 1 medium box (3 * 1 = 3)
+# 10 + 3 = 13
+# 2 + 1 = 3 boxes total
+# -----------
+#
+# Test-case C
+# -----------
+# 9 items should fill:
+# - 1 big box (5 * 1 = 5)
+# - 1 medium box (3 * 1 = 3)
+# - 1 small box (1 * 1 = 1)
+# 5 + 3 + 1 = 9
+# 1 + 1 + 1 = 3 boxes total
+# -----------
+#
+# Test-case D
+# -----------
+# 84 items should fill:
+# - 16 big box (5 * 16 = 80)
+# - 1 medium box (3 * 1 = 3)
+# - 1 small box (1 * 1 = 1)
+# 80 + 3 + 1 = 84
+# 16 + 1 + 1 = 18 boxes total
+# -----------
