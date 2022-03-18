@@ -1,25 +1,24 @@
 '''
 Task 3: Bingo Game
 
-In the game of Bingo, every player has at least one Bingo card containing a
-series of numbers. When a number is called out the player must check this
-against the numbers on the card. If a number exists, then it is crossed out.
-When all the numbers have been crossed out then the player shouts out “BINGO!”
+In the game of Bingo, every player has at least one Bingo card which contains a
+series of numbers. When a number is called out, the player must check it
+against the numbers on their card. If the number is there, it gets crossed out.
+When all their numbers have been crossed out, the player shouts out “BINGO!”
 
-This program asks the user to enter integers and checks them against a list
-variable standing in for the Bingo card. If a guess is correct, it is removed
-from the list, thereby reducing the number of numbers remaining to be guessed.
+This program reverses the process somewhat: it asks the user to enter integers,
+and checks them against a list variable standing in for the Bingo card.
+If a guess is correct, it is removed from the list, thereby reducing the number
+of Bingo numbers remaining to be guessed.
 '''
 
 # Print welcome message and initialise list
 print("\nWelcome to Bingo.")
 bingo = [7, 26, 40, 58, 73, 14, 22, 34, 55, 68]
 
-# Initialise guess to None; this will be set from user input
-guess = None
-
 # While the list contains values (i.e. while `bingo == True`), request guesses
 while bingo:
+    # Cast input to an integer; no error-handling for any other input types
     guess = int(input("\nGuess a number between 1 and 80: "))
 
     # Ensure guess is within valid range
