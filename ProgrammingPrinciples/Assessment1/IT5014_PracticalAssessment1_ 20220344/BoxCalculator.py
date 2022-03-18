@@ -14,7 +14,7 @@ This table shows available box sizes and the number of items each can hold:
 
 # Welcome message and explanation
 # Incorporates newline character; uses `\` to keep lines under 80 chars long
-print("\nThis is a box calculator.\nBig boxes hold 5 items; medium boxes hold 3\
+print("\nWelcome to the Box Calculator.\nBig boxes hold 5 items; medium boxes hold 3\
  items, and small boxes hold just one item each.\n")
 
 # Get number of items; assume user enters int > 5
@@ -31,7 +31,6 @@ medium_box_msg = ""
 small_box_msg = ""
 
 # Calculate number of big boxes needed, using floor division (`\\``)
-# Could also use `divmod()`: https://www.codingem.com/python-floor-division/
 big_box_count = num_items // 5
 
 # Work out how many unboxed items remain; result will be of `int` type
@@ -78,19 +77,19 @@ box_count = big_box_count + medium_box_count + small_box_count
 
 # If more than one, set string to "boxes", plural, otherwise "box", singular
 if box_count > 1:
-    box_plural_or_singular = " boxes"
+    box_term = " boxes"
 else:
-    box_plural_or_singular = " box"
+    box_term = " box"
 
-print("\nYou used " + str(box_count) + box_plural_or_singular + " in total.")
+print("\nYou used " + str(box_count) + box_term + " in total.\n")
 
 # This program fulfils the following four test-case assertions:
 #
 # Test-case A
 # -----------
 # 22 items should fill:
-# - 4 big boxes (4 * 5 = 20)
-# - 2 small boxes (2 * 1 = 2)
+# 📦 4 big boxes (4 * 5 = 20)
+# 📦 2 small boxes (2 * 1 = 2)
 # 20 + 2 = 22
 # 4 + 2 = 6 boxes total
 # -----------
@@ -98,8 +97,8 @@ print("\nYou used " + str(box_count) + box_plural_or_singular + " in total.")
 # Test-case B
 # -----------
 # 13 items should fill:
-# - 2 big boxes (2 * 5 = 10)
-# - 1 medium box (3 * 1 = 3)
+# 📦 2 big boxes (2 * 5 = 10)
+# 📦 1 medium box (3 * 1 = 3)
 # 10 + 3 = 13
 # 2 + 1 = 3 boxes total
 # -----------
@@ -107,9 +106,9 @@ print("\nYou used " + str(box_count) + box_plural_or_singular + " in total.")
 # Test-case C
 # -----------
 # 9 items should fill:
-# - 1 big box (5 * 1 = 5)
-# - 1 medium box (3 * 1 = 3)
-# - 1 small box (1 * 1 = 1)
+# 📦 1 big box (5 * 1 = 5)
+# 📦 1 medium box (3 * 1 = 3)
+# 📦 1 small box (1 * 1 = 1)
 # 5 + 3 + 1 = 9
 # 1 + 1 + 1 = 3 boxes total
 # -----------
@@ -117,9 +116,9 @@ print("\nYou used " + str(box_count) + box_plural_or_singular + " in total.")
 # Test-case D
 # -----------
 # 84 items should fill:
-# - 16 big box (5 * 16 = 80)
-# - 1 medium box (3 * 1 = 3)
-# - 1 small box (1 * 1 = 1)
+# 📦 16 big box (5 * 16 = 80)
+# 📦 1 medium box (3 * 1 = 3)
+# 📦 1 small box (1 * 1 = 1)
 # 80 + 3 + 1 = 84
 # 16 + 1 + 1 = 18 boxes total
 # -----------
