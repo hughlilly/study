@@ -8,33 +8,44 @@
         <meta name="description" content="A simple to-do app">
         <meta name="keywords" content="to-do list, productivity, web app">
         <title>2Do — Helping you get things done</title>
+        <link rel="stylesheet" href="./css/main.css">
+        <script src="./js/script.js"></script>
     </head>
 
     <body>
 
         <header>
             <nav>
-                <ul>
-                    <li class="navlink">Home</li>
-                    <li class="navlink">About</li>
-                    <li class="navlink">Dark mode</li>
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
                 </ul>
             </nav>
         </header>
 
         <main>
-            <div class="heading">
+            <section class="heading">
                 <h1 class="title">2Do</h1>
                 <p class="description">Helping you get things done</p>
-            </div>
-            <div class="form-div">
-                <form action="submit" method="get">
-                    <label for="new-item">Add item: </label>
-                    <input type="text" width="2rem">
-                    <submit class="submit-todo">Add</submit>
+            </section>
+            
+            <section class="form-div">
+                <form action="#" onsubmit="handle">
+                    <input type="text" id="input-txt" name="inputText" placeholder="Add an item…">
+                    <input type="button" value="Add" onclick="addItemToList(this.form.inputText.value)">
                 </form>
-            </div>
+            </section>
+            
+            <section class="list">
+                <ul id="to-do-list">
+                    <li class="todo">Item A</li>
+                </ul>
+            </section>
         </main>
+
+        <footer>
+            <p class="footer-copyright">&copy; 2022 2Do NZ Ltd.</p>
+        </footer>
 
     </body>
 
