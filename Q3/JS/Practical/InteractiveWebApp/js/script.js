@@ -1,17 +1,22 @@
-function handle(event) {
+// Get form element and store in variable
+const formElement = document.querySelector("form");
+
+formElement.addEventListener("submit", (event) => {
+	// Stop page from reloading
 	event.preventDefault();
-	alert("Enter!");
-}
 
-function addItemToList(inputText) {
-	// Create element, and add "todo" class to it
-	let newItemElement = document.createElement("li");
-	newItemElement.classList.add("todo");
+	// Get value from form input field
+	let newItemText = formElement.querySelector("#input-txt").value;
 
-	// Set content to input text from form
-	newItemElement.innerText = inputText;
+	// Create element to add to list
+	let newListElement = document.createElement("li");
 
-	// Get existing list element, and append new element to it
+	// Set text of new element from form
+	newListElement.innerText = newItemText;
+
+	// Get existing list element
 	let existingList = document.getElementById("to-do-list");
-	existingList.append(newItemElement);
-}
+
+	// Append new element to existing list
+	existingList.appendChild(newListElement);
+});

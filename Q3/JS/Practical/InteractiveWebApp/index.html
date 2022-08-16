@@ -9,10 +9,12 @@
         <meta name="keywords" content="to-do list, productivity, web app">
         <title>2Do — Helping you get things done</title>
         <link rel="stylesheet" href="./css/main.css">
-        <script src="./js/script.js"></script>
+        <script src="./js/script.js" defer></script>
     </head>
 
     <body>
+
+<main>
 
         <header>
             <nav>
@@ -22,17 +24,15 @@
                 </ul>
             </nav>
         </header>
-
-        <main>
             <section class="heading">
                 <h1 class="title">2Do</h1>
                 <p class="description">Helping you get things done</p>
             </section>
             
             <section class="form-div">
-                <form action="#" onsubmit="handle">
+                <form>
                     <input type="text" id="input-txt" name="inputText" placeholder="Add an item…">
-                    <input type="button" value="Add" onclick="addItemToList(this.form.inputText.value)">
+                    <button type="submit">Add</button>
                 </form>
             </section>
             
