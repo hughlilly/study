@@ -14,36 +14,37 @@
 
     <body>
 
-<main>
-
-        <header>
-            <nav>
-                <ul class="nav-list">
-                    <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-                </ul>
-            </nav>
-        </header>
-            <section class="heading">
-                <div class="heading-inner">
+        <div id="container">
+            <header>
+                <div class="site-title">
                     <h1 class="title">2Do</h1>
-                    <p class="description">Helping you get things done</p>
+                    <p class="tagline">Helping you get things done</p>
                 </div>
-            </section>
-            
-            <section class="form-div">
-                <form>
-                    <input type="text" id="input-txt" name="inputText" placeholder="Add an item…">
-                    <button type="submit">Add</button>
+            </header>
+
+            <main class="app-content">
+                <form class="form-div">
+                    <span class="input-span">
+                        <input type="text" id="input-txt" name="inputText" placeholder="Add an item…">
+                        <button type="submit">Add</button>
+                    </span>
                 </form>
-            </section>
-            
-            <section class="list">
-                <ul id="to-do-list">
-                    <li class="todo">Item A</li>
-                </ul>
-            </section>
-        </main>
+                <div class="list">
+                    <ul id="to-do-list">
+                        <li class="todo">
+                            <div class="todo-item">Item A</div>
+                            <button class="edit-btn">Edit</button>
+                            <button class="del-btn">Delete</button>
+                        </li>
+                        <li class="todo">
+                            <div class="todo-item">Item B</div>
+                            <button class="edit-btn">Edit</button>
+                            <button class="del-btn">Delete</button>
+                        </li>
+                    </ul>
+                </div>
+            </main>
+        </div>
 
         <footer>
             <p class="footer-copyright">&copy; 2022 2Do NZ Ltd.</p>

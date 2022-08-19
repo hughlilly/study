@@ -1,128 +1,122 @@
+/* TESTING ONLY — REMOVE BELOW! */
+* {
+	border: 1px solid pink;
+	/* border-radius: var(--radius); */
+}
+
 :root {
-	--radius: 0.2rem;
 	--bg-color: #f9f9f9;
 	--text-color: #232323;
 	--secondary-text-color: #464444;
 	--link-hover: #543fd7;
+	--border-color: #dbdbdb;
+	--radius: 7px;
+	border: 1px solid red;
 }
 
 body {
-	/* height: 100%; */
-	display: flex;
-	flex-direction: column;
-	margin: 0 5rem;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-		Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+	font-family: Arial, Helvetica, sans-serif;
 	color: var(--text-color);
 	background-color: var(--bg-color);
 	box-sizing: border-box;
-}
-
-main {
-	flex: 1 0 auto;
-	min-height: calc(100vh - 3rem);
-}
-
-/* Navigation */
-.nav-list {
-	margin: 0;
-	padding: 3rem 0;
-	display: flex;
-	justify-content: flex-end;
-	font-size: 0.7rem;
-}
-
-.nav-item {
-	list-style: none;
-	margin-right: 2rem;
-}
-
-.nav-item:first-child {
-	margin-right: auto;
-	margin-left: 2rem;
-}
-
-.nav-link {
-	text-decoration: none;
-}
-
-.nav-link,
-footer p {
-	color: var(--secondary-text-color);
-}
-
-.nav-link:hover {
-	color: var(--link-hover);
-	text-decoration: underline;
-	text-underline-offset: 0.3rem;
-}
-
-/* Box shadows */
-
-.heading,
-.list,
-.form-div {
-	box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
-		rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-}
-
-/* Site title and description */
-.heading {
-	text-align: center;
-}
-
-.heading-inner {
-	padding: 2rem 0;
-}
-
-.description {
-	font-style: italic;
-}
-
-/* Form */
-.form-div {
+	overflow: hidden;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	font-size: 1.3em;
-	margin: 3rem 0;
 }
 
-form {
-	margin: 2rem 0;
+/* Set left and right margins for various viewport widths */
+
+/* 5% margins for screens up to 800px wide */
+@media screen and (max-width: 800px) {
+	body {
+		margin: auto 5%;
+	}
 }
 
-input {
-	padding: 0.5rem 1rem;
+/* 10%  margins for screens 800px to 1024px wide */
+@media screen and (min-width: 800px) and (max-width: 1024px) {
+	body {
+		margin: auto 10%;
+	}
 }
 
-/* List */
-.list {
-	font-size: 0.8rem;
+/* 20% margins for screens over 1024px wide */
+@media screen and (min-width: 1024px) {
+	body {
+		margin: auto 20%;
+	}
 }
 
-#to-do-list {
-    padding: 2rem 0;
+#container {
+	height: 100%;
+	flex: 1 0 auto;
 }
 
-.list ul {
-	margin-left: 5rem;
-}
-
-.list li {
-	margin: 0.65rem 0;
-}
-
-/* Footer */
-footer {
+header {
+	background-color: lightblue;
 	text-align: center;
+}
+
+.site-title .title {
+	font-weight: bold;
+}
+
+.site-title>p.tagline {
+	font-style: italic;
+	font-size: 85%;
+}
+
+.app-content {
+	background-color: lightcyan;
+	font-size: 85%;
+}
+
+.form-div {
+	text-align: center;
+	margin: auto 0;
+}
+
+#input-txt {
+	width: 65%;
+	outline: 0;
+	margin: 1em 2em;
+}
+
+#input-txt,
+button {
+	height: 1.5rem;
+}
+
+button {
+	background-color: white
+}
+
+ul {
+	padding-inline-start: 0;
+	margin: 2rem 1.5rem;
+}
+
+li {
+	display: flex;
+	list-style: none;
+	margin-bottom: .5rem;
+}
+
+.todo-item {
+	flex-grow: 1;
+}
+
+.edit-btn,
+.del-btn {
+	margin-left: .5rem;
+}
+
+footer {
+	background-color: lightyellow;
+	font-size: 65%;
 	flex-shrink: 0;
 }
 
-footer p {
-	margin: 0.5rem;
-}
-
 .footer-copyright {
-	font-size: 0.65rem;
+	text-align: center;
 }
