@@ -1,27 +1,25 @@
-/* TESTING ONLY — REMOVE BELOW! */
-* {
-	border: 1px solid pink;
-	/* border-radius: var(--radius); */
-}
-
 :root {
 	--bg-color: #f9f9f9;
-	--text-color: #232323;
+	--text-color: #3d3d3d;
 	--secondary-text-color: #464444;
 	--link-hover: #543fd7;
+	--border--line-width: 1px;
+	--border-line-style: solid;
 	--border-color: #dbdbdb;
-	--radius: 7px;
-	border: 1px solid red;
+	--border-radius: 7px;
+	--button-border-radius: 3px;
 }
 
 body {
-	font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	/* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	color: var(--text-color);
 	background-color: var(--bg-color);
 	box-sizing: border-box;
 	overflow: hidden;
 	display: flex;
 	flex-direction: column;
+	min-height: 100vh;
 }
 
 /* Set left and right margins for various viewport widths */
@@ -53,8 +51,8 @@ body {
 }
 
 header {
-	background-color: lightblue;
 	text-align: center;
+	padding-block-start: 1rem;
 }
 
 .site-title .title {
@@ -67,29 +65,48 @@ header {
 }
 
 .app-content {
-	background-color: lightcyan;
+	border: var(--border--line-width) var(--border-line-style) var(--border-color);
+	background-color: white;
 	font-size: 85%;
+	border-radius: 1em;
+	margin: 3rem;
 }
 
 .form-div {
 	text-align: center;
-	margin: auto 0;
+	padding: 1.5rem 0;
+	border-bottom: var(--border--line-width) var(--border-line-style) var(--border-color);
 }
 
 .input-span {
 	display: flex;
-	flex-direction: row;
 }
 
 #input-txt {
-	flex-grow: .85;
+	flex-grow: 1;
 	outline: 0;
-	margin: 1rem 3rem 1rem;
+	margin: 1rem 1rem 1rem 2rem;
 	padding: 0.65rem 1rem;
-	font-family: inherit;
 }
 
 .edit-input {
+	margin-inline-end: 1rem;
+	padding-inline-start: .5rem;
+	padding: .25rem;
+}
+
+button {
+	margin-left: .5rem;
+}
+
+button.add {
+	margin-right: 2rem;
+}
+
+#input-txt,
+.edit-input,
+button {
+	font-family: inherit;
 	font-size: inherit;
 }
 
@@ -98,9 +115,20 @@ header {
 	align-self: center;
 }
 
-button {
-	border: none;
+button,
+input {
+	border: 1px solid var(--border-color);
 	background-color: white
+}
+
+button,
+input {
+	border-radius: 3px;
+}
+
+button:hover {
+	cursor: pointer;
+	background-color: rgb(238, 238, 238);
 }
 
 ul {
@@ -119,13 +147,13 @@ li {
 	flex-grow: 1;
 }
 
+/* 
 .edit-btn,
 .del-btn {
 	margin-left: .5rem;
-}
+} */
 
 footer {
-	background-color: lightyellow;
 	font-size: 65%;
 	flex-shrink: 0;
 }
