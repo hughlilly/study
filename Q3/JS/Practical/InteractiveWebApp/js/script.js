@@ -6,18 +6,16 @@ const formElement = document.querySelector("form");
 // Get existing list element
 const existingList = document.querySelector("#to-do-list");
 
-// If list is blank, inject placeholder div
-if (existingList.childNodes.length === 0) {
-    const placeholderText = document.createElement("div");
-    placeholderText.classList.add("no-items-placeholder");
-    placeholderText.innerText = "No items";
-    existingList.appendChild(placeholderText);
-}
+// Create and insert placeholder div
+const placeholderText = document.createElement("div");
+placeholderText.classList.add("no-items-placeholder");
+placeholderText.innerText = "No items";
+existingList.appendChild(placeholderText);
 
 // Store placeholder element in a variable so it can be hidden and unhidden
-placeholderElement = existingList.querySelector(".no-items-placeholder");
+const placeholderElement = document.querySelector(".no-items-placeholder");
 
-// Store message area element so it can be updated
+// Store message-area element so it can be updated
 const messageArea = document.querySelector("#message-area");
 
 // Listen for the "submit" event on the form
@@ -29,6 +27,7 @@ formElement.addEventListener("submit", (event) => {
     const inputField = formElement.querySelector("#input-txt");
 
     // Get value from form input field, trim it
+    // This means it will be empty if the only characters entered are one or more spaces
     let newItemText = inputField.value.trim();
 
     // If not blank, continue
@@ -56,8 +55,7 @@ formElement.addEventListener("submit", (event) => {
     formElement.querySelector("#input-txt").value = "";
 });
 
-//  Create a new element to append to the list, complete with
-//  edit and delete buttons. Returns an `HTMLLIElement` object.
+// Create a new element to append to the list, complete with edit and delete buttons. Returns an `HTMLLIElement` object.
 function createNewElement(newItemText) {
     // Create list element to add to; set class
     let newListElement = document.createElement("li");
@@ -88,8 +86,7 @@ function createNewElement(newItemText) {
     return newListElement;
 }
 
-// B: Delete and update list items
-
+// Delete and update list items
 // Listen for clicks on the list
 existingList.addEventListener("click", (event) => {
     // If Edit button clicked, run edit function
@@ -100,9 +97,9 @@ existingList.addEventListener("click", (event) => {
     else if (event.target.classList.contains("del-btn")) {
         const innerText =
             event.target.parentNode.querySelector(".todo-item").innerText;
-        let time = new Date();
-        time = time.toLocaleTimeString();
-        console.info(`"${innerText}" was deleted at ${time}`);
+        // Log to console to track changes
+        let currentTime = new Date().toLocaleTimeString();
+        console.info(`"${innerText}" was deleted at ${currentTime}`);
         event.target.parentNode.remove();
 
         // If `childElementCount` is 1, presume this is the placeholder div, and unhide it
@@ -156,7 +153,7 @@ function editItem(event) {
         if (event.key === "Enter") {
             saveItem();
         } else if (event.key === "Escape") {
-            // If value in editable field has been changed, log to console
+            // If value in editable field has been changed, log to console to track changes
             if (!editInput.value == originalValue)
                 console.info(
                     `Editing cancelled. New text would have been "${editInput.value}"`
@@ -180,12 +177,12 @@ function editItem(event) {
         let newText = editInput.value;
         let oldText = itemDiv.innerText;
 
-        // Log to console as a way to track history before implementing Local Storage
-        let time = new Date();
-        time = time.toLocaleTimeString();
-        console.log(`"${oldText}" set to "${newText}" at ${time}`);
+        // Log to console to track changes
+        let currentTime = new Date().toLocaleTimeString();
+        console.log(`"${oldText}" set to "${newText}" at ${currentTime}`);
         // set itemDiv value to inputElementEdit value
         itemDiv.innerText = editInput.value;
+        // NB: Could not simply say `oldText = newText` because this would change only those local variables, not the DOM content
 
         // Run CancelEditing function because actions are the same from here on out
         cancelEditing();
