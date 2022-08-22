@@ -16,7 +16,6 @@ body {
 	color: var(--text-color);
 	background-color: var(--bg-color);
 	box-sizing: border-box;
-	overflow: hidden;
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
@@ -24,22 +23,47 @@ body {
 
 /* Set left and right margins for various viewport widths */
 
-/* 5% margins for screens up to 800px wide */
-@media screen and (max-width: 800px) {
+
+/* 3% margins for screens 400px to 600px wide */
+@media screen and (min-width:400px) and (max-width: 600px) {
+	body {
+		margin: auto 3%;
+	}
+}
+
+
+/* 5%  margins for screens 600px to 800px wide */
+@media screen and (min-width: 600px) and (max-width: 800px) {
 	body {
 		margin: auto 5%;
 	}
 }
 
-/* 10%  margins for screens 800px to 1024px wide */
+/* 7%  margins for screens 800px to 1024px wide */
 @media screen and (min-width: 800px) and (max-width: 1024px) {
+	body {
+		margin: auto 7%;
+	}
+}
+
+/* 10% margins for screens 1024px to 1200px wide */
+@media screen and (min-width: 1024px) and (max-width:1200px) {
 	body {
 		margin: auto 10%;
 	}
 }
 
-/* 20% margins for screens over 1024px wide */
-@media screen and (min-width: 1024px) {
+
+/* 15% margins for screens 1200px to 1400px wide */
+@media screen and (min-width:1200px) and (max-width:1400px) {
+	body {
+		margin: auto 15%;
+	}
+}
+
+
+/* 20% margins for screens 1400px wide and wider */
+@media screen and (min-width:1400px) {
 	body {
 		margin: auto 20%;
 	}
@@ -48,6 +72,7 @@ body {
 #container {
 	height: 100%;
 	flex: 1 0 auto;
+	margin-bottom: 3vh;
 }
 
 header {
@@ -61,28 +86,54 @@ header {
 
 .site-title>p.tagline {
 	font-style: italic;
-	font-size: 85%;
+	/* font-size: 85%; */
 }
 
 .app-content {
 	border: var(--border--line-width) var(--border-line-style) var(--border-color);
 	background-color: white;
-	font-size: 85%;
+	/* font-size: 85%; */
 	border-radius: 1em;
 	margin: 3rem;
 }
 
 #message-area {
-	font-size: .75rem;
+	font-size: .85rem;
 	text-align: center;
 	padding: 1rem 3rem 0;
 	font-style: italic;
 	min-height: 1rem;
 }
 
+.warning {
+	color: #dc3545;
+}
+
+.info {
+	color: var(--secondary-text-color);
+}
+
+.fadeout {
+	animation: opacity 2s both;
+}
+
+@keyframes opacity {
+	0% {
+		opacity: 1;
+	}
+
+	60% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
 .form-div {
 	text-align: center;
-	padding: .5rem 0 2rem;
+	padding: .5rem 0 2.5rem;
 	border-bottom: var(--border--line-width) var(--border-line-style) var(--border-color);
 }
 
@@ -92,7 +143,6 @@ header {
 
 #input-txt {
 	flex-grow: 1;
-	outline: 0;
 	margin: 0 1rem 0 2rem;
 	padding: 0.65rem 1rem;
 }
@@ -147,7 +197,7 @@ button:hover {
 
 ul {
 	padding-inline-start: 0;
-	margin: 2rem 1.5rem;
+	margin: 1.5rem;
 }
 
 li {
@@ -157,7 +207,7 @@ li {
 }
 
 .no-items-placeholder {
-	margin: 2.5rem 0;
+	margin: 2rem 0;
 }
 
 .todo-item,
@@ -170,8 +220,9 @@ li {
 }
 
 footer {
-	font-size: 65%;
-	flex-shrink: 0;
+	font-size: 75%;
+	flex: 0 0 auto;
+	margin-bottom: 1rem;
 }
 
 .footer-copyright {

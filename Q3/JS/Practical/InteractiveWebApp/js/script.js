@@ -6,6 +6,7 @@ const formElement = document.querySelector("form");
 // Get existing list element
 const existingList = document.querySelector("#to-do-list");
 
+// If list is blank, inject placeholder div
 if (existingList.childNodes.length === 0) {
 	const placeholderText = document.createElement("div");
 	placeholderText.classList.add("no-items-placeholder");
@@ -13,30 +14,46 @@ if (existingList.childNodes.length === 0) {
 	existingList.appendChild(placeholderText);
 }
 
+// Store placeholder element in a variable so it can be hidden and unhidden
 placeholderElement = existingList.querySelector(".no-items-placeholder");
 
-// Listen for the "submit" event on the button
+// Store message area element so it can be updated
+const messageArea = document.querySelector("#message-area");
+
+// Listen for the "submit" event on the form
 formElement.addEventListener("submit", (event) => {
 	// Stop page from reloading
-	event.preventDefault();
+	event.preventDefault()
 
-	// If placeholder span is there, hide it
-	if (placeholderElement) placeholderElement.hidden = true;
+	// Store input element in variable so it can be queried
+	const inputField = formElement.querySelector("#input-txt");
 
-	// Get value from form input field
-	let newItemText = formElement.querySelector("#input-txt").value;
+	// Get value from form input field, trim it
+	let newItemText = inputField.value.trim();
 
-	// If not blank, continue with adding process
-	if (newItemText != "") {
+	// If not blank, continue
+	if (newItemText !== "") {
+		// Hide placeholder
+		placeholderElement.hidden = true;
+
 		// Pass input text to function and store result in variable
 		let newListElement = createNewElement(newItemText);
 
 		// Append new element to existing list
 		existingList.appendChild(newListElement);
+	} else if (newItemText === "") {
+		// If blank, set to warning, fadeout, and update text
+		messageArea.classList.add("warning", "fadeout");
+		messageArea.innerText = "List items cannot be blank!";
 
-		// Reset value
-		formElement.querySelector("#input-txt").value = "";
+		// After 3 seconds, clear inner text and remove fadeout class
+		setTimeout(function () {
+			messageArea.innerText = "";
+			messageArea.classList.remove("fadeout");
+		}, 2000);
 	}
+	// Reset value
+	formElement.querySelector("#input-txt").value = "";
 });
 
 //  Create a new element to append to the list, complete with
@@ -122,62 +139,68 @@ function editItem(event) {
 
 	// Get item and text
 	const itemDiv = listItem.querySelector(".todo-item");
-	const innerText = itemDiv.innerText;
+	const originalValue = itemDiv.innerText;
 
 	// Create input element for editing
 	const editInput = document.createElement("input");
 	editInput.classList.add("edit-input");
-	editInput.value = innerText;
+	editInput.value = originalValue;
 
 	// Replace existing div with new input field
 	itemDiv.replaceWith(editInput);
 	editInput.focus();
 	editInput.select();
 
-	// If enter is pressed inside editInput, save item
+	// If enter is pressed inside editInput, save item; if "Esc", cancel
 	editInput.addEventListener("keypress", function (event) {
 		if (event.key === "Enter") {
 			saveItem();
+		} else if (event.key === "Escape") {
+			// If value in editable field has been changed, log to console
+			if (!editInput.value == originalValue)
+				console.info(
+					`Editing cancelled. New text would have been "${editInput.value}"`
+				);
+			cancelEditing();
 		}
 	});
 
-	// If Cancel is pressed
-	cancelButton.addEventListener("click", function () {
-		// Reset delete and edit button state
-		delButton.removeAttribute("hidden");
-		editButton.removeAttribute("hidden");
-
-		// Restore div
-		editInput.replaceWith(itemDiv);
-
-		// Remove Save button and self
-		saveButton.remove();
-		this.remove();
-	});
-
-	// If Save is pressed
+	// If Save is pressed, run Save function
 	saveButton.addEventListener("click", function () {
 		saveItem();
+	});
+
+	// If Cancel is pressed, run Cancel function
+	cancelButton.addEventListener("click", function () {
+		// Reset delete and edit button state
+		cancelEditing();
 	});
 
 	function saveItem() {
 		let newText = editInput.value;
 		let oldText = itemDiv.innerText;
+
+		// Log to console as a way to track history before implementing Local Storage
 		let time = new Date();
 		time = time.toLocaleTimeString();
 		console.log(`"${oldText}" set to "${newText}" at ${time}`);
 		// set itemDiv value to inputElementEdit value
 		itemDiv.innerText = editInput.value;
 
-		// Reset delete and edit button state
+		// Run CancelEditing function because actions are the same from here on out
+		cancelEditing();
+	}
+
+	function cancelEditing() {
+		// Reset state of delete and edit buttons
 		delButton.removeAttribute("hidden");
 		editButton.removeAttribute("hidden");
 
-		// Restore div
+		// Restore original div
 		editInput.replaceWith(itemDiv);
 
-		// Remove Cancel button and self
-		cancelButton.remove();
+		// Remove Save and Cancel buttons
 		saveButton.remove();
+		cancelButton.remove();
 	}
 }
