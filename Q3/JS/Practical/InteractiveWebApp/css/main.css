@@ -1,230 +1,229 @@
 :root {
-	--bg-color: #f9f9f9;
-	--text-color: #3d3d3d;
-	--secondary-text-color: #464444;
-	--link-hover: #543fd7;
-	--border--line-width: 1px;
-	--border-line-style: solid;
-	--border-color: #dbdbdb;
-	--border-radius: 7px;
-	--button-border-radius: 3px;
+    --bg-color: #f9f9f9;
+    --text-color: #3d3d3d;
+    --secondary-text-color: #464444;
+    --link-hover: #543fd7;
+    --border--line-width: 1px;
+    --border-line-style: solid;
+    --border-color: #dbdbdb;
+    --border-radius: 7px;
+    --button-border-radius: 3px;
 }
 
 body {
-	/* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-	color: var(--text-color);
-	background-color: var(--bg-color);
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+    /* font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+        sans-serif;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* Set left and right margins for various viewport widths */
 
-
 /* 3% margins for screens 400px to 600px wide */
-@media screen and (min-width:400px) and (max-width: 600px) {
-	body {
-		margin: auto 3%;
-	}
+@media screen and (min-width: 400px) and (max-width: 600px) {
+    body {
+        margin: auto 3%;
+    }
 }
-
 
 /* 5%  margins for screens 600px to 800px wide */
 @media screen and (min-width: 600px) and (max-width: 800px) {
-	body {
-		margin: auto 5%;
-	}
+    body {
+        margin: auto 5%;
+    }
 }
 
 /* 7%  margins for screens 800px to 1024px wide */
 @media screen and (min-width: 800px) and (max-width: 1024px) {
-	body {
-		margin: auto 7%;
-	}
+    body {
+        margin: auto 7%;
+    }
 }
 
 /* 10% margins for screens 1024px to 1200px wide */
-@media screen and (min-width: 1024px) and (max-width:1200px) {
-	body {
-		margin: auto 10%;
-	}
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+    body {
+        margin: auto 10%;
+    }
 }
-
 
 /* 15% margins for screens 1200px to 1400px wide */
-@media screen and (min-width:1200px) and (max-width:1400px) {
-	body {
-		margin: auto 15%;
-	}
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+    body {
+        margin: auto 15%;
+    }
 }
 
-
 /* 20% margins for screens 1400px wide and wider */
-@media screen and (min-width:1400px) {
-	body {
-		margin: auto 20%;
-	}
+@media screen and (min-width: 1400px) {
+    body {
+        margin: auto 20%;
+    }
 }
 
 #container {
-	height: 100%;
-	flex: 1 0 auto;
-	margin-bottom: 3vh;
+    height: 100%;
+    flex: 1 0 auto;
+    margin-bottom: 3vh;
 }
 
 header {
-	text-align: center;
-	padding-block-start: 1rem;
+    text-align: center;
+    padding-block-start: 1rem;
 }
 
 .site-title .title {
-	font-weight: bold;
+    font-weight: bold;
 }
 
-.site-title>p.tagline {
-	font-style: italic;
-	/* font-size: 85%; */
+.site-title > p.tagline {
+    font-style: italic;
+    /* font-size: 85%; */
 }
 
 .app-content {
-	border: var(--border--line-width) var(--border-line-style) var(--border-color);
-	background-color: white;
-	/* font-size: 85%; */
-	border-radius: 1em;
-	margin: 3rem;
+    border: var(--border--line-width) var(--border-line-style)
+        var(--border-color);
+    background-color: white;
+    /* font-size: 85%; */
+    border-radius: 1em;
+    margin: 3rem;
 }
 
 #message-area {
-	font-size: .85rem;
-	text-align: center;
-	padding: 1rem 3rem 0;
-	font-style: italic;
-	min-height: 1rem;
+    font-size: 0.85rem;
+    text-align: center;
+    padding: 1rem 3rem 0;
+    font-style: italic;
+    min-height: 1rem;
 }
 
 .warning {
-	color: #dc3545;
+    color: #dc3545;
 }
 
 .info {
-	color: var(--secondary-text-color);
+    color: var(--secondary-text-color);
 }
 
 .fadeout {
-	animation: opacity 2s both;
+    animation: opacity 2s both;
 }
 
 @keyframes opacity {
-	0% {
-		opacity: 1;
-	}
+    0% {
+        opacity: 1;
+    }
 
-	60% {
-		opacity: 1;
-	}
+    60% {
+        opacity: 1;
+    }
 
-	100% {
-		opacity: 0;
-	}
+    100% {
+        opacity: 0;
+    }
 }
 
 .form-div {
-	text-align: center;
-	padding: .5rem 0 2.5rem;
-	border-bottom: var(--border--line-width) var(--border-line-style) var(--border-color);
+    text-align: center;
+    padding: 0.5rem 0 2.5rem;
+    border-bottom: var(--border--line-width) var(--border-line-style)
+        var(--border-color);
 }
 
 .input-span {
-	display: flex;
+    display: flex;
 }
 
 #input-txt {
-	flex-grow: 1;
-	margin: 0 1rem 0 2rem;
-	padding: 0.65rem 1rem;
+    flex-grow: 1;
+    margin: 0 1rem 0 2rem;
+    padding: 0.65rem 1rem;
 }
 
 .edit-input {
-	margin-inline-end: 1.25rem;
-	padding: .25rem .5rem;
+    margin-inline-end: 1.25rem;
+    padding: 0.25rem 0.5rem;
 }
 
 button {
-	margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 
 button.add {
-	margin-right: 1.7rem;
+    margin-right: 1.7rem;
 }
 
 #input-txt,
 .edit-input,
 button {
-	font-family: inherit;
-	font-size: inherit;
-	color: inherit;
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
 }
 
-#input-txt+button,
+#input-txt + button,
 .todo-item {
-	align-self: center;
+    align-self: center;
 }
 
 .no-items-placeholder {
-	text-align: center;
-	font-style: italic;
-	color: rgb(175, 175, 175);
+    text-align: center;
+    font-style: italic;
+    color: rgb(175, 175, 175);
 }
 
 button,
 input {
-	border: 1px solid var(--border-color);
-	background-color: white
+    border: 1px solid var(--border-color);
+    background-color: white;
 }
 
 button,
 input {
-	border-radius: 3px;
+    border-radius: 3px;
 }
 
 button:hover {
-	cursor: pointer;
-	background-color: rgb(238, 238, 238);
+    cursor: pointer;
+    background-color: rgb(238, 238, 238);
 }
 
 ul {
-	padding-inline-start: 0;
-	margin: 1.5rem;
+    padding-inline-start: 0;
+    margin: 1.5rem;
 }
 
 li {
-	display: flex;
-	list-style: none;
-	margin-bottom: .5rem;
+    display: flex;
+    list-style: none;
+    margin-bottom: 0.5rem;
 }
 
 .no-items-placeholder {
-	margin: 2rem 0;
+    margin: 2rem 0;
 }
 
 .todo-item,
 .edit-input {
-	flex-grow: 1;
+    flex-grow: 1;
 }
 
 .todo-item {
-	margin-left: .65rem;
+    margin-left: 0.65rem;
 }
 
 footer {
-	font-size: 75%;
-	flex: 0 0 auto;
-	margin-bottom: 1rem;
+    font-size: 75%;
+    flex: 0 0 auto;
+    margin-bottom: 1rem;
 }
 
 .footer-copyright {
-	text-align: center;
+    text-align: center;
 }
