@@ -1,4 +1,6 @@
-// A: Add a new item to the list
+"use strict";
+
+// Add a new item to the list
 
 // Get form element
 const formElement = document.querySelector("form");
@@ -128,7 +130,6 @@ function editItem(event) {
     // Insert new buttons before edit button
     editButton.insertAdjacentElement("beforebegin", saveButton);
     editButton.insertAdjacentElement("beforebegin", cancelButton);
-    // editButton.insertBefore(saveButton, cancelButton);
 
     // Hide delete and edit buttons
     delButton.hidden = true;
@@ -136,12 +137,11 @@ function editItem(event) {
 
     // Get item and text
     const itemDiv = listItem.querySelector(".todo-item");
-    const originalValue = itemDiv.innerText;
 
     // Create input element for editing
     const editInput = document.createElement("input");
     editInput.classList.add("edit-input");
-    editInput.value = originalValue;
+    editInput.value = itemDiv.innerText;
 
     // Replace existing div with new input field
     itemDiv.replaceWith(editInput);
@@ -153,11 +153,7 @@ function editItem(event) {
         if (event.key === "Enter") {
             saveItem();
         } else if (event.key === "Escape") {
-            // If value in editable field has been changed, log to console to track changes
-            if (!editInput.value == originalValue)
-                console.info(
-                    `Editing cancelled. New text would have been "${editInput.value}"`
-                );
+            checkValues(editInput, itemDiv);
             cancelEditing();
         }
     });
@@ -167,22 +163,26 @@ function editItem(event) {
         saveItem();
     });
 
-    // If Cancel is pressed, run Cancel function
+    // If Cancel is pressed, check then run Cancel function
     cancelButton.addEventListener("click", function () {
+        checkValues(editInput, itemDiv);
         // Reset delete and edit button state
         cancelEditing();
     });
 
     function saveItem() {
-        let newText = editInput.value;
-        let oldText = itemDiv.innerText;
-
-        // Log to console to track changes
-        let currentTime = new Date().toLocaleTimeString();
-        console.log(`"${oldText}" set to "${newText}" at ${currentTime}`);
-        // set itemDiv value to inputElementEdit value
-        itemDiv.innerText = editInput.value;
-        // NB: Could not simply say `oldText = newText` because this would change only those local variables, not the DOM content
+        if (itemDiv.innerText == editInput.value) {
+            // Log to console to track changes
+            console.info("Values were identical; no save necessary");
+        } else {
+            let currentTime = new Date().toLocaleTimeString();
+            // Log to console to track changes
+            console.info(
+                `"${itemDiv.innerText}" set to "${editInput.value}" at ${currentTime}`
+            );
+            // Set displayed value to user input
+            itemDiv.innerText = editInput.value;
+        }
 
         // Run CancelEditing function because actions are the same from here on out
         cancelEditing();
@@ -201,3 +201,15 @@ function editItem(event) {
         cancelButton.remove();
     }
 }
+
+function checkValues(editInput, itemDiv) {
+    // Check if new value is the same as old one; log to console to track changes
+    if (editInput.value == itemDiv.innerText) {
+        console.info(`Editing cancelled; values were identical`);
+    } else {
+        console.info(
+            `Editing cancelled; new text would have been "${editInput.value}"`
+        );
+    }
+}
+// NB: Could also incorporate into Save function, and not save if text is identical; phrases in log statements would have to change.
