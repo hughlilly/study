@@ -2,3 +2,4 @@
 *.pptx
 *.zip
 **/.vscode/*
+**/.DS_Store
